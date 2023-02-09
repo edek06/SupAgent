@@ -28,10 +28,10 @@ class Ticket(models.Model):
     # CASCADE - what will happend, when one User will delete
     # RELATED_NAME - is a relationship between User and Post
     author = models.ForeignKey(User, on_delete=models.CASCADE,
-                               related_name='ticketportal_tickets')
+                               related_name='tickets_aut')
     # responsible user for this ticket
     respons_user = models.ForeignKey(User, on_delete=models.CASCADE,
-                                         related_name='ticketportal_tickets')
+                                         related_name='tickets_res')
     # details of this ticket
     description = models.TextField()
     # when this ticket was closed
