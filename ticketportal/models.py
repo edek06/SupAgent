@@ -18,7 +18,7 @@ class Ticket(models.Model):
         CHANGE = 'CHG', 'Change'
 
     # add a priority field of this post
-    class Priority(models.TextChoices):
+    class Priority(models.IntegerChoices):
         LOW = 1, 'Low'
         MIDDLE = 2, 'Middle'
         HIGH = 3, 'High'
@@ -35,11 +35,11 @@ class Ticket(models.Model):
     # details of this ticket
     description = models.TextField()
     # when this ticket was closed
-    closed = models.DateTimeField()
+    #closed = models.DateTimeField(blank=True, default=)
     # when this ticket was created
     created = models.DateTimeField(auto_now_add=True)
     # deadline for this ticket - this parameter will be optional
-    deadline = models.DateTimeField()
+    #deadline = models.DateTimeField(blank=True)
     # status of this ticket (Aktiv, Done)
     status = models.CharField(max_length=3,
                                 choices=Status.choices,
