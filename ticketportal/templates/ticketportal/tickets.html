@@ -1,10 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>SupAgent</title>
-</head>
-<body>
-Here will be listing all tickets!
-</body>
-</html>
+{% extends "ticketportal/base.html" %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file"></span>
+              Tickets
+            </a>
+          </li>
+          <p>----------------------</p>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              Incidents
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              Service Requests
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2"></span>
+              Changes
+            </a>
+          </li>
+          <p>----------------------</p>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2"></span>
+              Closed
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <br>
+      <h2>Tickets</h2>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Ticket ID</th>
+              <th scope="col">Title</th>
+              <th scope="col">Category</th>
+              <th scope="col">Owner</th>
+              <th scope="col">Created</th>
+              <th scope="col">Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ticket in tickets %}
+            {% if ticket.priority == 3 %}
+            <tr class="bg-secondary">
+            {% elif ticket.priority == 2 %}
+            <tr class="text-dark bg-light">
+            {% else %}
+            <tr class="text-dark bg-white">
+            {% endif %}
+              <td>{{ ticket.id }}</td>
+              <td>{{ ticket.title }}</td>
+              <td>{{ ticket.category }}</td>
+              <td>{{ ticket.author }}</td>
+              <td>{{ ticket.created }}</td>
+              <td>{{ ticket.priority }}</td>
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+{% endblock %}

@@ -5,9 +5,9 @@ from .models import Ticket
 #now we can self change this look! (127.0.0.1:8000/admin)
 class TicketAdmin(admin.ModelAdmin):
     # this parameter will be display
-    list_display = ['title', 'respons_user', 'author', 'created', 'status', 'category', 'priority']
+    list_display = ['id', 'title', 'respons_user', 'author', 'created', 'status', 'category', 'priority']
     # we can filter all posts
-    list_filter = ['title', 'respons_user', 'author', 'created', 'status', 'category', 'priority']
+    list_filter = ['id', 'title', 'respons_user', 'author', 'created', 'status', 'category', 'priority']
     # this will be can find
     search_fields = ['title']
     date_hierarchy = 'created'
