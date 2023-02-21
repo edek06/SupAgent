@@ -9,6 +9,6 @@ def tickets(request):
 # details of one ticket display
 def ticket_detail(request, ticket_id):
     # if ID is valid, save this object in ticket-Variable
-    ticket = get_object_or_404(Ticket, id=ticket_id)
-    # this page und a ticket return
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
+    # return this page and the ticket
     return render(request, 'ticketportal/ticket_detail.html', {'ticket': ticket})

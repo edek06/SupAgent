@@ -1,4 +1,4 @@
-{% extends "ticketportal/base.html" %}
+{% extends 'ticketportal/base.html' %}
 {% block content %}
 <div class="container-fluid">
   <div class="row">
@@ -66,14 +66,14 @@
             <tr class="text-dark bg-white">
             {% endif %}
               <td>{{ ticket.id }}</td>
-              <td>{{ ticket.title }}</td>
+              <td><a href="{% url 'ticketportal:ticket_detail' ticket.id %}" style="color:black;">{{ ticket.title }}</a></td>
               <td>{{ ticket.category }}</td>
               <td>{{ ticket.author }}</td>
               <td>{{ ticket.created }}</td>
               <td>{{ ticket.priority }}</td>
+              </a>
             </tr>
             {% endfor %}
-
           </tbody>
         </table>
       </div>
