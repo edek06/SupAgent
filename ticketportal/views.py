@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Ticket
 from .forms import TicketForm
 def tickets(request):
@@ -26,9 +26,10 @@ def create_ticket(request):
             ticket = form.save(commit=False)
             # Save the comment to the database
             ticket.save()
+            # And back to the Homepage
+            return redirect('ticketportal:tickets')
     # if a GET we'll create a blank form
     else:
         form = TicketForm()
-    return render(request, 'ticketportal/create_ticket.html',
-                  {'form': form,
-                   'ticket': ticket})
+        return render(request, 'ticketportal/create_ticket.html',
+                      {'form': form})
