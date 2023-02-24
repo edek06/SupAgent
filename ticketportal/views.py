@@ -7,6 +7,36 @@ def tickets(request):
     # show tickets on this page "tickets.html"
     return render(request, 'ticketportal/tickets.html', {'tickets': tickets})
 
+def tck(request):
+    # all tickets from user
+    tickets = Ticket.objects.filter(category='TCK')
+    # show tickets on this page "tck.html"
+    return render(request, 'ticketportal/tck.html', {'tickets': tickets})
+
+def inc(request):
+    # all incidents from user
+    tickets = Ticket.objects.filter(category='INC')
+    # show tickets on this page "inc.html"
+    return render(request, 'ticketportal/inc.html', {'tickets': tickets})
+
+def srq(request):
+    # all service requests from user
+    tickets = Ticket.objects.filter(category='SRQ')
+    # show tickets on this page "srq.html"
+    return render(request, 'ticketportal/srq.html', {'tickets': tickets})
+
+def chg(request):
+    # all changes from user
+    tickets = Ticket.objects.filter(category='CHG')
+    # show tickets on this page "chg.html"
+    return render(request, 'ticketportal/chg.html', {'tickets': tickets})
+
+def closed(request):
+    # all closed tickets
+    tickets = Ticket.objects.filter(status='CSD')
+    # show tickets on this page "closed.html"
+    return render(request, 'ticketportal/closed.html', {'tickets': tickets})
+
 # details of one ticket display
 def ticket_detail(request, ticket_id):
     # if ID is valid, save this object in ticket-Variable

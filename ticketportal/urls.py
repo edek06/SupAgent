@@ -3,6 +3,11 @@ from . import views
 app_name = 'ticketportal'
 urlpatterns = [
     path('', views.tickets, name='tickets'),
+    path('tck/', views.tck, name='tck'),
+    path('inc/', views.inc, name='inc'),
+    path('srq/', views.srq, name='srq'),
+    path('chg/', views.chg, name='chg'),
+    path('closed/', views.closed, name='closed'),
     path('<int:ticket_id>', views.ticket_detail, name='ticket_detail'),
     path('create_ticket/', views.create_ticket, name='create_ticket'),
 ]
