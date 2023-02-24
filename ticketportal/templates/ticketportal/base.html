@@ -36,19 +36,71 @@
   </head>
   <body>
 
-    <header class="navbar navbar-dark sticky-top bg-info flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand text-dark col-md-3 col-lg-2 me-0 px-3" href="#">SupAgent</a>
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand text-light col-md-3 col-lg-2 me-0 px-3" href="{% url 'ticketportal:tickets' %}">SupAgent</a>
       <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <!--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
       <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-          <a class="nav-link px-3 text-dark" href="#">Sign out</a>
+          <a class="nav-link px-3 text-light" href="#">Sign out</a>
         </div>
       </div>
     </header>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-secondary sidebar collapse">
+          <div class="position-sticky pt-3">
+            <ul class="nav flex-column">
+              <br>
+              <li class="nav-item">
+                <a class="nav-link btn btn-success" href="{% url 'ticketportal:create_ticket' %}" style="color:black;">
+                  <span data-feather="file"></span>
+                  Add a ticket
+                </a>
+              </li>
+              <br>
+              <li class="nav-item">
+                <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:tickets' %}" style="color:black;">
+                  <span data-feather="file"></span>
+                  Tickets
+                </a>
+              </li>
+              <br>
+              <li class="nav-item">
+                <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:tickets' %}" style="color:black;">
+                  <span data-feather="shopping-cart"></span>
+                  Incidents
+                </a>
+              </li>
+              <br>
+              <li class="nav-item">
+                <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:tickets' %}" style="color:black;">
+                  <span data-feather="users"></span>
+                  Service Requests
+                </a>
+              </li>
+              <br>
+              <li class="nav-item">
+                <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:tickets' %}" style="color:black;">
+                  <span data-feather="bar-chart-2"></span>
+                  Changes
+                </a>
+              </li>
+              <br>
+              <li class="nav-item btn btn-secondary">
+                <a class="nav-link" href="{% url 'ticketportal:tickets' %}" style="color:black;">
+                  <span data-feather="bar-chart-2"></span>
+                  <-- Closed -->
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
     {% block content %}
     {% endblock %}
+      </div>
+    </div>
   </body>
 </html>
