@@ -5,5 +5,9 @@
     <h1>{{ ticket.title }}</h1>
     <br>
     <h3>{{ ticket.description }}</h3>
+    <br>
+    <input class="btn btn-secondary btn-lg" style="float:left;" type="submit" value="Edit">
+    <button type="submit" class="btn btn-success btn-lg" style="float:right;">Done</button>
+    <a href="{% url 'ticketportal:close_ticket' ticket.id %}">Done</a>
 </main>
 {% endblock %}

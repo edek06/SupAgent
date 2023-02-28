@@ -63,3 +63,10 @@ def create_ticket(request):
         form = TicketForm()
         return render(request, 'ticketportal/create_ticket.html',
                       {'form': form})
+
+# ticket will closed - STATUS will changed from "Active" to "Closed"
+def close_ticket(request, ticket_id):
+    # if ID is valid, save this object in ticket-Variable
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
+    # return this page and the ticket
+    return render(request, 'ticketportal/ticket_detail.html', {'ticket': ticket})
