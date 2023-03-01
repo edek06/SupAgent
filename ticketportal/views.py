@@ -3,7 +3,7 @@ from .models import Ticket
 from .forms import TicketForm
 def tickets(request):
     # all tickets save in 'tickets'
-    tickets = Ticket.objects.all()
+    tickets = Ticket.objects.filter(status='ACT')
     # show tickets on this page "tickets.html"
     return render(request, 'ticketportal/tickets.html', {'tickets': tickets})
 
@@ -68,10 +68,12 @@ def create_ticket(request):
 def close_ticket(request, ticket_id):
     # if ID is valid, save this object in ticket-Variable
     ticket = get_object_or_404(Ticket, pk=ticket_id)
-    ticket.status = 'TEST'
+    # change a value for status to 'Closed'
+    ticket.status = Ticket.Status.CLOSED
+    # Save the comment to the database
     ticket.save()
-    # return this page and the ticket
-    return render(request, 'ticketportal/ticket_detail.html', {'ticket': ticket})
+    # And back to the Homepage
+    return redirect('ticketportal:tickets')
 
 def edit_ticket(request, ticket_id):
     # if ID is valid, save this object in ticket-Variable
