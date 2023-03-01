@@ -68,5 +68,26 @@ def create_ticket(request):
 def close_ticket(request, ticket_id):
     # if ID is valid, save this object in ticket-Variable
     ticket = get_object_or_404(Ticket, pk=ticket_id)
+    ticket.status = 'TEST'
+    ticket.save()
     # return this page and the ticket
     return render(request, 'ticketportal/ticket_detail.html', {'ticket': ticket})
+
+def edit_ticket(request, ticket_id):
+    # if ID is valid, save this object in ticket-Variable
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and fill in with a ticket-details
+        form = TicketForm(request.POST, instance=ticket)
+        # check whether it's valid:
+        if form.is_valid():
+            # Save the comment to the database
+            ticket.save()
+            # And back to the Homepage
+            return redirect('ticketportal:tickets')
+    else:
+        # current ticket in a form saving
+        form = TicketForm(instance=ticket)
+        # return this page and the ticket
+        return render(request, 'ticketportal/edit_ticket.html', {'ticket': ticket, 'form':form})
