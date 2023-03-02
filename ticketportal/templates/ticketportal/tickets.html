@@ -17,13 +17,13 @@
           </thead>
           <tbody>
             {% for ticket in tickets %}
-            {% if ticket.priority == 3 %}
+            <!--{% if ticket.priority == 3 %}
             <tr class="bg-danger">
             {% elif ticket.priority == 2 %}
             <tr class="text-dark bg-light">
             {% else %}
-            <tr class="text-dark bg-white">
-            {% endif %}
+            {% endif %}-->
+            <tr class="text-dark bg-light">
               <td>{{ ticket.id }}</td>
               <td><a href="{% url 'ticketportal:ticket_detail' ticket.id %}" style="color:black;">{{ ticket.title }}</a></td>
               <td>{{ ticket.category }}</td>

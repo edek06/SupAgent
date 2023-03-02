@@ -68,12 +68,18 @@ def create_ticket(request):
 def close_ticket(request, ticket_id):
     # if ID is valid, save this object in ticket-Variable
     ticket = get_object_or_404(Ticket, pk=ticket_id)
-    # change a value for status to 'Closed'
-    ticket.status = Ticket.Status.CLOSED
+    # check aktually status
+    if not ticket.status == Ticket.Status.CLOSED:
+        # change a value for status to 'Closed'
+        ticket.status = Ticket.Status.CLOSED
+        # turn the info back
+        info = "Ticket closed successfully"
+    else:
+        info = "Ticket already closed. No action needed."
     # Save the comment to the database
     ticket.save()
     # And back to the Homepage
-    return redirect('ticketportal:tickets')
+    return render(request, 'ticketportal/close.html', {'info':info})
 
 def edit_ticket(request, ticket_id):
     # if ID is valid, save this object in ticket-Variable
