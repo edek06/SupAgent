@@ -49,58 +49,67 @@
       </div>
     </header>
     <div class="container-fluid">
-      <div class="row flex-nowrap">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-secondary sidebar collapse">
-          <div class="position-sticky pt-3">
-            <ul class="nav flex-column">
-              <br>
-              <li class="nav-item">
-                <a class="nav-link btn btn-success" href="{% url 'ticketportal:create_ticket' %}" style="color:black;">
-                  <span data-feather="file"></span>
-                  Add a ticket
-                </a>
-              </li>
-              <br>
-              <li class="nav-item">
-                <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:tck' %}" style="color:black;">
-                  <span data-feather="file"></span>
-                  Tickets
-                </a>
-              </li>
-              <br>
-              <li class="nav-item">
-                <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:inc' %}" style="color:black;">
-                  <span data-feather="shopping-cart"></span>
-                  Incidents
-                </a>
-              </li>
-              <br>
-              <li class="nav-item">
-                <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:srq' %}" style="color:black;">
-                  <span data-feather="users"></span>
-                  Service Requests
-                </a>
-              </li>
-              <br>
-              <li class="nav-item">
-                <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:chg' %}" style="color:black;">
-                  <span data-feather="bar-chart-2"></span>
-                  Changes
-                </a>
-              </li>
-              <br>
-              <li class="nav-item btn btn-secondary">
-                <a class="nav-link" href="{% url 'ticketportal:closed' %}" style="color:black;">
-                  <span data-feather="bar-chart-2"></span>
-                  <-- Closed -->
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-    {% block content %}
-    {% endblock %}
-      </div>
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-secondary">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-4 text-white min-vh-100">
+                <ul class="nav flex-column col-md-12">
+                   <br>
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-success" href="{% url 'ticketportal:create_ticket' %}" style="color:black;">
+                        <span data-feather="file"></span>
+                        Add a ticket
+                      </a>
+                    </li>
+                    <br>
+                </ul>
+                <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu2">
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:tck' %}" style="color:black;">
+                        <span data-feather="file"></span>
+                        Tickets
+                      </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:inc' %}" style="color:black;">
+                        <span data-feather="file"></span>
+                        Incidents
+                      </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:srq' %}" style="color:black;">
+                        <span data-feather="file"></span>
+                        Service Requests
+                      </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:chg' %}" style="color:black;">
+                        <span data-feather="file"></span>
+                        Changes
+                      </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-light" href="{% url 'ticketportal:closed' %}" style="color:black;">
+                        <span data-feather="file"></span>
+                        <-- Closed -->
+                      </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown pb-4">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                        <span class="d-none d-sm-inline mx-1">Einstellungen</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
     </div>
   </body>
 </html>
