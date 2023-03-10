@@ -44,7 +44,12 @@
       <!--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
       <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-          <a class="nav-link px-3 text-light" href="#">Sign out</a>
+          <!--<a class="nav-link px-3 text-light" href="{% url 'accounts:login' %}">Logout</a>-->
+            <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                <form id="logout" method="POST" action="{% url 'accounts:logout' %}">
+                    {% csrf_token %}
+                    <input type="hidden" />
+                </form>
         </div>
       </div>
     </header>

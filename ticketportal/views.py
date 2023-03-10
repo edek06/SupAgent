@@ -9,25 +9,25 @@ def tickets(request):
 
 def tck(request):
     # all tickets from user
-    tickets = Ticket.objects.filter(category='TCK')
+    tickets = Ticket.objects.filter(category='TCK', status='ACT')
     # show tickets on this page "tck.html"
     return render(request, 'ticketportal/tck.html', {'tickets': tickets})
 
 def inc(request):
     # all incidents from user
-    tickets = Ticket.objects.filter(category='INC')
+    tickets = Ticket.objects.filter(category='INC', status='ACT')
     # show tickets on this page "inc.html"
     return render(request, 'ticketportal/inc.html', {'tickets': tickets})
 
 def srq(request):
     # all service requests from user
-    tickets = Ticket.objects.filter(category='SRQ')
+    tickets = Ticket.objects.filter(category='SRQ', status='ACT')
     # show tickets on this page "srq.html"
     return render(request, 'ticketportal/srq.html', {'tickets': tickets})
 
 def chg(request):
     # all changes from user
-    tickets = Ticket.objects.filter(category='CHG')
+    tickets = Ticket.objects.filter(category='CHG', status='ACT')
     # show tickets on this page "chg.html"
     return render(request, 'ticketportal/chg.html', {'tickets': tickets})
 
