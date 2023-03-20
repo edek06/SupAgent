@@ -1,36 +1,44 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Ticket
 from .forms import TicketForm
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url="/")
 def tickets(request):
     # all tickets save in 'tickets'
     tickets = Ticket.objects.filter(status='ACT')
     # show tickets on this page "tickets.html"
     return render(request, 'ticketportal/tickets.html', {'tickets': tickets})
 
+@login_required(login_url="/")
 def tck(request):
     # all tickets from user
     tickets = Ticket.objects.filter(category='TCK', status='ACT')
     # show tickets on this page "tck.html"
     return render(request, 'ticketportal/tck.html', {'tickets': tickets})
 
+@login_required(login_url="/")
 def inc(request):
     # all incidents from user
     tickets = Ticket.objects.filter(category='INC', status='ACT')
     # show tickets on this page "inc.html"
     return render(request, 'ticketportal/inc.html', {'tickets': tickets})
 
+@login_required(login_url="/")
 def srq(request):
     # all service requests from user
     tickets = Ticket.objects.filter(category='SRQ', status='ACT')
     # show tickets on this page "srq.html"
     return render(request, 'ticketportal/srq.html', {'tickets': tickets})
 
+@login_required(login_url="/")
 def chg(request):
     # all changes from user
     tickets = Ticket.objects.filter(category='CHG', status='ACT')
     # show tickets on this page "chg.html"
     return render(request, 'ticketportal/chg.html', {'tickets': tickets})
 
+@login_required(login_url="/")
 def closed(request):
     # all closed tickets
     tickets = Ticket.objects.filter(status='CSD')
@@ -38,12 +46,14 @@ def closed(request):
     return render(request, 'ticketportal/closed.html', {'tickets': tickets})
 
 # details of one ticket display
+@login_required(login_url="/")
 def ticket_detail(request, ticket_id):
     # if ID is valid, save this object in ticket-Variable
     ticket = get_object_or_404(Ticket, pk=ticket_id)
     # return this page and the ticket
     return render(request, 'ticketportal/ticket_detail.html', {'ticket': ticket})
 
+@login_required(login_url="/")
 def create_ticket(request):
     ticket = None
     # if this is a POST request we need to process the form data
@@ -65,6 +75,7 @@ def create_ticket(request):
                       {'form': form})
 
 # ticket will closed - STATUS will changed from "Active" to "Closed"
+@login_required(login_url="/")
 def close_ticket(request, ticket_id):
     # if ID is valid, save this object in ticket-Variable
     ticket = get_object_or_404(Ticket, pk=ticket_id)
@@ -81,6 +92,7 @@ def close_ticket(request, ticket_id):
     # And back to the Homepage
     return render(request, 'ticketportal/close.html', {'info':info})
 
+@login_required(login_url="/")
 def edit_ticket(request, ticket_id):
     # if ID is valid, save this object in ticket-Variable
     ticket = get_object_or_404(Ticket, pk=ticket_id)
