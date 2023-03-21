@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-ALl employees on this page will be list.
-</body>
-</html>
+{% extends 'ticketportal/base.html' %}
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <br>
+      <h2>Employees</h2>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Employee ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Joined</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for employee in employees %}
+            <tr class="text-dark bg-light">
+              <td>{{ employee.id }}</td>
+              <td><a href="#" style="color:black;">{{ employee.name }}</a></td>
+              <td>{{ employee.joined }}</td>
+              </a>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </main>
+{% endblock %}
