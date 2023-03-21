@@ -50,6 +50,12 @@ class Ticket(models.Model):
     priority = models.IntegerField(choices=Priority.choices,
                               default=Priority.LOW)
 
+    class Meta:
+        ordering = ['created']
+        indexes = [
+            models.Index(fields=['created']),
+        ]
+
     # return a name of post
     def __str__(self):
         return self.title
