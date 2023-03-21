@@ -50,6 +50,7 @@ class Ticket(models.Model):
     priority = models.IntegerField(choices=Priority.choices,
                               default=Priority.LOW)
 
+    # all Tickets will be sort by created field
     class Meta:
         ordering = ['created']
         indexes = [

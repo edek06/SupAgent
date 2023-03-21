@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ticketportal.apps.TicketPortalConfig',
     'accounts.apps.AccountsConfig',
+    'employees.apps.EmployeesConfig',
 ]
 
 MIDDLEWARE = [
