@@ -1,17 +1,29 @@
+{% extends 'ticketportal/base.html' %}
 {% block content %}
-{% if error %}
-    <h3 style="color:red">{{ error }} </h3>
-    <br />
-{% endif %}
-<h1>SIGN UP!</h1>
-<form method="POST" action="{% url 'accounts:signup' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    Username:
-    <input type="text" name="username" />
-    Password:
-    <input type="password" name="password1" />
-    Confirm password:
-    <input type="password" name="password2" />
-    <input class="btn btn-primary" type="submit" value="Sign Up!" />
-</form>
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    {% if error %}
+        <h3 style="color:red">{{ error }} </h3>
+        <br>
+    {% endif %}
+    <br>
+    <h1>SIGN UP!</h1>
+    <br>
+    <form method="POST" action="{% url 'accounts:signup' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        Username:
+        <br>
+        <input type="text" name="username" />
+        <br>
+        Password:
+        <br>
+        <input type="password" name="password1" />
+        <br>
+        Confirm password:
+        <br>
+        <input type="password" name="password2" />
+        <br>
+        <br>
+        <input class="btn btn-primary" type="submit" value="Sign Up!" />
+    </form>
+</main>
 {% endblock %}

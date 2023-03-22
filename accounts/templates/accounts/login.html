@@ -1,25 +1,28 @@
+{% extends 'ticketportal/base.html' %}
 {% block content %}
-{% if error %}
-    <h3 style="color:red">{{ error }} </h3>
-    <br />
-{% endif %}
-<br />
-<h1>Welcome by SupAgent!</h1>
-<br />
-<form method="POST" action="{% url 'accounts:login' %}">
-    {% csrf_token %}
-    Username:
-    <br />
-    <input type="text" name="username" />
-    <br />
-    Password:
-    <br />
-    <input type="password" name="password" />
-    <br />
-    <br />
-    <input class="btn btn-primary" type="submit" value="Login" />
-</form>
-<br>
-<br>
-<h2><a href="{% url 'accounts:signup' %}" class="btn btn-primary btn-lg active" role="button">Create new account!</a></h2>
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    {% if error %}
+        <h3 style="color:red">{{ error }} </h3>
+        <br>
+    {% endif %}
+    <br>
+    <h1>Welcome by SupAgent!</h1>
+    <br>
+    <form method="POST" action="{% url 'accounts:login' %}">
+        {% csrf_token %}
+        Username:
+        <br>
+        <input type="text" name="username" />
+        <br>
+        Password:
+        <br>
+        <input type="password" name="password" />
+        <br>
+        <br>
+        <input class="btn btn-primary" type="submit" value="Login" />
+    </form>
+    <br>
+    <br>
+    <h2><a href="{% url 'accounts:signup' %}" class="btn btn-light btn-lg active" role="button">Create new account!</a></h2>
+</main>
 {% endblock %}
