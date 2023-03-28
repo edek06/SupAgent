@@ -10,9 +10,9 @@ class Employee(models.Model):
 
     # all Employees will be sort by joined (created) field
     class Meta:
-        ordering = ['joined']
+        ordering = ['name']
         indexes = [
-            models.Index(fields=['joined']),
+            models.Index(fields=['name']),
         ]
 
     # return a name of this employee

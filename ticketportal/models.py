@@ -29,11 +29,15 @@ class Ticket(models.Model):
     # RELATED_NAME - is a relationship between User and Ticket
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name='tickets_aut',
-                               default="gwozniak")
+                               default="gwedi")
     # responsible user for this ticket
-    respons_user = models.ForeignKey(User, on_delete=models.CASCADE,
-                                         related_name='tickets_res',
-                                        default='gwozniak')
+    #respons_user = models.ForeignKey(User, on_delete=models.CASCADE,
+    #                                    blank=True,
+    #                                    default="")
+    # 
+    #respons_user = models.ForeignKey(User, on_delete=models.CASCADE,
+    #                                    blank=True,
+    #                                    default="")
     # details of this ticket
     description = models.TextField()
     # when this ticket was closed

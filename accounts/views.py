@@ -18,7 +18,7 @@ def login(request):
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
-        return render(request, 'accounts/logout.html')
+        return render(request, 'accounts/login.html')
 
 def signup(request):
     if request.method == 'POST': # wenn wir die Informationen schicken wollen dann...

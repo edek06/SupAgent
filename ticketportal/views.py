@@ -2,46 +2,83 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Ticket
 from .forms import TicketForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 @login_required(login_url="/")
 def tickets(request):
     # all tickets save in 'tickets'
-    tickets = Ticket.objects.filter(status='ACT')
+    activ_tickets = Ticket.objects.filter(status='ACT')
+    #first 20 employess on the page
+    paginator = Paginator(activ_tickets, 12)
+    #beginn with the first page
+    page_number = request.GET.get('page', 1)
+    #save all this infomations in the variable
+    tickets = paginator.page(page_number)
     # show tickets on this page "tickets.html"
     return render(request, 'ticketportal/tickets.html', {'tickets': tickets})
 
 @login_required(login_url="/")
 def tck(request):
     # all tickets from user
-    tickets = Ticket.objects.filter(category='TCK', status='ACT')
+    all_tickets = Ticket.objects.filter(category='TCK', status='ACT')
+    # first 20 employess on the page
+    paginator = Paginator(all_tickets, 12)
+    # beginn with the first page
+    page_number = request.GET.get('page', 1)
+    # save all this infomations in the variable
+    tickets = paginator.page(page_number)
     # show tickets on this page "tck.html"
     return render(request, 'ticketportal/tck.html', {'tickets': tickets})
 
 @login_required(login_url="/")
 def inc(request):
     # all incidents from user
-    tickets = Ticket.objects.filter(category='INC', status='ACT')
+    all_incidents = Ticket.objects.filter(category='INC', status='ACT')
+    # first 20 employess on the page
+    paginator = Paginator(all_incidents, 12)
+    # beginn with the first page
+    page_number = request.GET.get('page', 1)
+    # save all this infomations in the variable
+    tickets = paginator.page(page_number)
     # show tickets on this page "inc.html"
     return render(request, 'ticketportal/inc.html', {'tickets': tickets})
 
 @login_required(login_url="/")
 def srq(request):
     # all service requests from user
-    tickets = Ticket.objects.filter(category='SRQ', status='ACT')
+    all_requests = Ticket.objects.filter(category='SRQ', status='ACT')
+    # first 20 employess on the page
+    paginator = Paginator(all_requests, 12)
+    # beginn with the first page
+    page_number = request.GET.get('page', 1)
+    # save all this infomations in the variable
+    tickets = paginator.page(page_number)
     # show tickets on this page "srq.html"
     return render(request, 'ticketportal/srq.html', {'tickets': tickets})
 
 @login_required(login_url="/")
 def chg(request):
     # all changes from user
-    tickets = Ticket.objects.filter(category='CHG', status='ACT')
+    all_changes = Ticket.objects.filter(category='CHG', status='ACT')
+    # first 20 employess on the page
+    paginator = Paginator(all_changes, 12)
+    # beginn with the first page
+    page_number = request.GET.get('page', 1)
+    # save all this infomations in the variable
+    tickets = paginator.page(page_number)
     # show tickets on this page "chg.html"
     return render(request, 'ticketportal/chg.html', {'tickets': tickets})
 
 @login_required(login_url="/")
 def closed(request):
     # all closed tickets
-    tickets = Ticket.objects.filter(status='CSD')
+    closed_tickets = Ticket.objects.filter(status='CSD')
+    # first 20 employess on the page
+    paginator = Paginator(closed_tickets, 12)
+    # beginn with the first page
+    page_number = request.GET.get('page', 1)
+    # save all this infomations in the variable
+    tickets = paginator.page(page_number)
     # show tickets on this page "closed.html"
     return render(request, 'ticketportal/closed.html', {'tickets': tickets})
 

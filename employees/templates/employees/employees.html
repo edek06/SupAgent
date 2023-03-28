@@ -24,6 +24,7 @@
             {% endfor %}
           </tbody>
         </table>
+        {% include 'ticketportal/pagination.html' with page=employees %}
       </div>
     </main>
 {% endblock %}
