@@ -9,7 +9,7 @@ def tickets(request):
     # all tickets save in 'tickets'
     activ_tickets = Ticket.objects.filter(status='ACT')
     #first 20 employess on the page
-    paginator = Paginator(activ_tickets, 12)
+    paginator = Paginator(activ_tickets, 15)
     #beginn with the first page
     page_number = request.GET.get('page', 1)
     #save all this infomations in the variable
