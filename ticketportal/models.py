@@ -1,9 +1,11 @@
 #create a models
 from django.db import models
-#fot time
+#for time
 from django.utils import timezone
 #for User Authentication
 from django.contrib.auth.models import User
+#for employees
+from employees.models import Employee
 #Model 'Ticket'
 class Ticket(models.Model):
     # add a status field of this post
@@ -30,7 +32,8 @@ class Ticket(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name='tickets_aut',
                                default="gwedi")
-    # responsible user for this ticket
+    # The requester is the person who made the support request
+    #requester = models.ForeignKey(Employee, on_delete=models.CASCADE)
     #respons_user = models.ForeignKey(User, on_delete=models.CASCADE,
     #                                    blank=True,
     #                                    default="")
