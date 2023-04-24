@@ -33,7 +33,7 @@ class Ticket(models.Model):
                                related_name='tickets_aut',
                                default="gwedi")
     # The requester is the person who made the support request
-    #requester = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    requester = models.ForeignKey(Employee, on_delete=models.CASCADE)
     #respons_user = models.ForeignKey(User, on_delete=models.CASCADE,
     #                                    blank=True,
     #                                    default="")
@@ -61,7 +61,7 @@ class Ticket(models.Model):
 
     # all Tickets will be sort by created field
     class Meta:
-        ordering = ['created']
+        ordering = ['-created']
         indexes = [
             models.Index(fields=['created']),
         ]

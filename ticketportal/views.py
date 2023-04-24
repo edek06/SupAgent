@@ -74,7 +74,7 @@ def closed(request):
     # all closed tickets
     closed_tickets = Ticket.objects.filter(status='CSD')
     # first 20 employess on the page
-    paginator = Paginator(closed_tickets, 12)
+    paginator = Paginator(closed_tickets, 16)
     # beginn with the first page
     page_number = request.GET.get('page', 1)
     # save all this infomations in the variable
