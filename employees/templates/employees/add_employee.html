@@ -1,0 +1,14 @@
+{% extends "ticketportal/base.html" %}
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <br>
+  <h2>Create new Employee</h2>
+  <br>
+  <form method="post">
+    {{ form.as_p }} <h3><font color="red">{{ message }}</font></h3>
+    {% csrf_token %}
+    <br>
+    <input class="btn btn-danger" type="submit" value="Create">
+  </form>
+</main>
+{% endblock %}
