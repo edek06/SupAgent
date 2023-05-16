@@ -126,6 +126,8 @@ def close_ticket(request, ticket_id):
         form = TicketCloseForm(request.POST, instance=ticket)
         # check whether it's valid:
         if form.is_valid():
+            # change a value for status to 'Closed'
+            ticket.status = Ticket.Status.CLOSED
             # Save the comment to the database
             ticket.save()
             info = "Ticket closed successfully"
@@ -134,6 +136,23 @@ def close_ticket(request, ticket_id):
         form = TicketCloseForm(instance=ticket)
         # And back to the Homepage
         return render(request, 'ticketportal/close.html', {'ticket': ticket, 'form':form})
+
+@login_required(login_url="/")
+def close_ticket_backup(request, ticket_id):
+    # if ID is valid, save this object in ticket-Variable
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
+    # check aktually status
+    if not ticket.status == Ticket.Status.CLOSED:
+        # change a value for status to 'Closed'
+        ticket.status = Ticket.Status.CLOSED
+        # turn the info back
+        info = "Ticket closed successfully"
+    else:
+        info = "Ticket already closed. No action needed."
+    # Save the comment to the database
+    ticket.save()
+    # And back to the Homepage
+    return render(request, 'ticketportal/close.html', {'info':info})
 
 @login_required(login_url="/")
 def edit_ticket(request, ticket_id):
