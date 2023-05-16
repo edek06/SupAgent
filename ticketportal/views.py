@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Ticket
-from .forms import TicketForm
+from .forms import TicketForm, TicketCloseForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
@@ -117,17 +117,23 @@ def close_ticket(request, ticket_id):
     # if ID is valid, save this object in ticket-Variable
     ticket = get_object_or_404(Ticket, pk=ticket_id)
     # check aktually status
-    if not ticket.status == Ticket.Status.CLOSED:
-        # change a value for status to 'Closed'
-        ticket.status = Ticket.Status.CLOSED
-        # turn the info back
-        info = "Ticket closed successfully"
-    else:
+    if ticket.status == Ticket.Status.CLOSED:
         info = "Ticket already closed. No action needed."
-    # Save the comment to the database
-    ticket.save()
-    # And back to the Homepage
-    return render(request, 'ticketportal/close.html', {'info':info})
+        # And back to the Homepage
+        return render(request, 'ticketportal/close.html', {'info': info})
+    if request.method == 'POST':
+        # create a form instance and fill in with a ticket-details
+        form = TicketCloseForm(request.POST, instance=ticket)
+        # check whether it's valid:
+        if form.is_valid():
+            # Save the comment to the database
+            ticket.save()
+            info = "Ticket closed successfully"
+            return render(request, 'ticketportal/close.html', {'info':info})
+    else:
+        form = TicketCloseForm(instance=ticket)
+        # And back to the Homepage
+        return render(request, 'ticketportal/close.html', {'ticket': ticket, 'form':form})
 
 @login_required(login_url="/")
 def edit_ticket(request, ticket_id):

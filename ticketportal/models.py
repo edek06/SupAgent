@@ -58,6 +58,8 @@ class Ticket(models.Model):
                                 default=Category.TICKET)
     priority = models.IntegerField(choices=Priority.choices,
                               default=Priority.LOW)
+    #solution to this issue
+    solution = models.TextField(blank=True, default="")
 
     # all Tickets will be sort by created field
     class Meta:
