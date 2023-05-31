@@ -37,10 +37,6 @@ class Ticket(models.Model):
     #respons_user = models.ForeignKey(User, on_delete=models.CASCADE,
     #                                    blank=True,
     #                                    default="")
-    # 
-    #respons_user = models.ForeignKey(User, on_delete=models.CASCADE,
-    #                                    blank=True,
-    #                                    default="")
     # details of this ticket
     description = models.TextField()
     # when this ticket was closed
@@ -60,7 +56,8 @@ class Ticket(models.Model):
                               default=Priority.LOW)
     #solution to this issue
     solution = models.TextField(blank=True, default="")
-
+    # set a date, when a ticket will be closed
+    closed = models.DateTimeField(null=True, blank=True)
     # all Tickets will be sort by created field
     class Meta:
         ordering = ['-created']
