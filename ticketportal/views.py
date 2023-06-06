@@ -3,6 +3,7 @@ from .models import Ticket
 from .forms import TicketForm, TicketCloseForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.utils import timezone
 
 @login_required(login_url="/")
 def tickets(request):
@@ -126,8 +127,10 @@ def close_ticket(request, ticket_id):
         form = TicketCloseForm(request.POST, instance=ticket)
         # check whether it's valid:
         if form.is_valid():
-            # change a value for status to 'Closed'
+            # change a value of status to 'Closed'
             ticket.status = Ticket.Status.CLOSED
+            # set a time
+            ticket.closed = timezone.now()
             # Save the comment to the database
             ticket.save()
             info = "Ticket closed successfully"
