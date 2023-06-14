@@ -22,7 +22,7 @@
               <td>{{ ticket.id }}</td>
               <td><a href="{% url 'ticketportal:ticket_detail' ticket.id %}" style="color:black;">{{ ticket.title }}</a></td>
               <td>{{ ticket.category }}</td>
-              <td>{{ ticket.requester }}</td>
+              <td><a href="{% url 'ticketportal:employee_tickets' ticket.requester.id %}" style="color:black;">{{ ticket.requester }}</a></td>
               <td>{{ ticket.created }}</td>
               <td>{{ ticket.priority }}</td>
               </a>

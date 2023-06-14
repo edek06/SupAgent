@@ -1,0 +1,42 @@
+{% extends 'ticketportal/base.html' %}
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <br>
+      <h2>Tickets from <b>{{ employee }}</b></h2>
+      <br>
+      <div class="table-responsive">
+        <table class="table table-md">
+          <thead>
+            <tr>
+              <th scope="col">Ticket ID</th>
+              <th scope="col">Title</th>
+              <th scope="col">Category</th>
+              <th scope="col">Created</th>
+              <th scope="col">Closed</th>
+              <th scope="col">Priority</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ticket in tickets %}
+              {% if ticket.status == 'CSD' %}
+              <tr class="text-dark bg-secondary">
+              {% else %}
+              <tr class="text-dark bg-success">
+              {% endif %}
+                <td>{{ ticket.id }}</td>
+                <td><a href="{% url 'ticketportal:ticket_detail' ticket.id %}" style="color:black;">{{ ticket.title }}</a></td>
+                <td>{{ ticket.category }}</td>
+                <td>{{ ticket.created }}</td>
+                <td>{{ ticket.closed }}</td>
+                <td>{{ ticket.priority }}</td>
+                <td>{{ ticket.status }}</td>
+                </a>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% include 'ticketportal/pagination.html' with page=tickets %}
+      </div>
+    </main>
+{% endblock %}

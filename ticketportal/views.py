@@ -4,6 +4,7 @@ from .forms import TicketForm, TicketCloseForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.utils import timezone
+from employees.models import Employee
 
 @login_required(login_url="/")
 def tickets(request):
@@ -74,7 +75,7 @@ def chg(request):
 def closed(request):
     # all closed tickets
     closed_tickets = Ticket.objects.filter(status='CSD')
-    # first 20 employess on the page
+    # first 16 tickets on the page
     paginator = Paginator(closed_tickets, 16)
     # beginn with the first page
     page_number = request.GET.get('page', 1)
@@ -141,23 +142,6 @@ def close_ticket(request, ticket_id):
         return render(request, 'ticketportal/close.html', {'ticket': ticket, 'form':form})
 
 @login_required(login_url="/")
-def close_ticket_backup(request, ticket_id):
-    # if ID is valid, save this object in ticket-Variable
-    ticket = get_object_or_404(Ticket, pk=ticket_id)
-    # check aktually status
-    if not ticket.status == Ticket.Status.CLOSED:
-        # change a value for status to 'Closed'
-        ticket.status = Ticket.Status.CLOSED
-        # turn the info back
-        info = "Ticket closed successfully"
-    else:
-        info = "Ticket already closed. No action needed."
-    # Save the comment to the database
-    ticket.save()
-    # And back to the Homepage
-    return render(request, 'ticketportal/close.html', {'info':info})
-
-@login_required(login_url="/")
 def edit_ticket(request, ticket_id):
     # if ID is valid, save this object in ticket-Variable
     ticket = get_object_or_404(Ticket, pk=ticket_id)
@@ -176,3 +160,18 @@ def edit_ticket(request, ticket_id):
         form = TicketForm(instance=ticket)
         # return this page and the ticket
         return render(request, 'ticketportal/edit_ticket.html', {'ticket': ticket, 'form':form})
+
+@login_required(login_url="/")
+def show_employee_tickets(request, employee_id):
+    # all tickets of this employee sort by ID
+    employee_tickets = Ticket.objects.filter(requester=employee_id).order_by('-id')
+    # name of employee als object
+    employee = get_object_or_404(Employee, pk=employee_id)
+    # first 20 employess on the page
+    paginator = Paginator(employee_tickets, 16)
+    # beginn with the first page
+    page_number = request.GET.get('page', 1)
+    # save all this infomations in the variable
+    tickets = paginator.page(page_number)
+
+    return render(request, 'ticketportal/employee_tickets.html', {'tickets': tickets, 'employee':employee})

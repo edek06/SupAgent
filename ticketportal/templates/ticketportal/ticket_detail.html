@@ -15,7 +15,9 @@
     <br>
     <p>Created: {{ ticket.created }}</p>
     {% if ticket.closed %}
-        <p>Closed: {{ ticket.closed }}</p>
+        </b><p class="text-danger">Closed: {{ ticket.closed }}</p>
+        <p><b>Solution:</b></p>
+        <p>{{ ticket.solution }}</p>
     {% endif %}
     <a href="{% url 'ticketportal:edit_ticket' ticket.id %}" class="btn btn-secondary btn-lg active" role="button">Edit Ticket</a>
     <a href="{% url 'ticketportal:close_ticket' ticket.id %}" class="btn btn-success btn-lg active" role="button">Done</a>
