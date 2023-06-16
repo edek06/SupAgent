@@ -4,12 +4,12 @@ from django.contrib import auth # Autherntifizierung/Anmeldung
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('ticketportal:tickets')
+        return redirect('ticketportal:dashboard')
     elif request.method == 'POST':
         user = auth.authenticate(username=request.POST['username'],password=request.POST['password'])
         if user is not None:
             auth.login(request, user)
-            return redirect('ticketportal:tickets')
+            return redirect('ticketportal:dashboard')
         else:
             return render(request, 'accounts/login.html', {'error': 'Username or password is incorrect. Try again!'})
     else:
@@ -29,7 +29,7 @@ def signup(request):
             except User.DoesNotExist: # wenn der Benutzer noch nicht existiert und das Passwrt übereinstimmt
                 user = User.objects.create_user(request.POST['username'], password=request.POST['password1']) # Benutzer erstellen
                 auth.login(request, user) # den Benutzer anmelden
-                return redirect('ticketportal:tickets') # und zurück zur Homepage
+                return redirect('ticketportal:dashboard') # und zurück zur Homepage
         return render(request, 'accounts/signup.html', {'error': 'Password not match!'}) # wenn die Passwörter nicht übereinstimmen
     else:
         return render(request, 'accounts/signup.html') # wenn das Formular nicht die Methode POST ist sondern GET

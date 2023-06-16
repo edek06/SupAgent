@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Grzegorz Wozniak">
+    <meta name="SupAgent" content="SupAgent v0.12">
+
+    <!-- Bootstrap core CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+<meta name="theme-color" content="#7952b3">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <!--<link href="dashboard.css" rel="stylesheet">-->
+  </head>
+  <body>
+
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand text-light col-md-3 col-lg-2 me-0 px-3" href="{% url 'ticketportal:tickets' %}">SupAgent</a>
+      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
+      <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+          {% if user.is_authenticated %}
+              <a class="nav-link px-3 text-light" href="javascript:{document.getElementById('logout').submit()}">Logout ({{ user }})</a>
+                    <form id="logout" method="POST" action="{% url 'accounts:logout' %}">
+                        {% csrf_token %}
+                        <input type="hidden" />
+                    </form>
+          {% else %}
+            <a class="nav-link px-3 text-light" href="{% url 'accounts:login' %}">Login </a>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+    <div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-secondary">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-4 text-white min-vh-100">
+                <ul class="nav flex-column col-md-12">
+                   <br>
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-success" href="{% url 'ticketportal:create_ticket' %}" style="color:black;">
+                        <span data-feather="file"></span>
+                        Add a ticket
+                      </a>
+                    </li>
+                    <br>
+                </ul>
+                <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu2">
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:tck' %}" style="color:black;">
+                        <span data-feather="file"></span>
+                        Tickets
+                      </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:inc' %}" style="color:black;">
+                        <span data-feather="file"></span>
+                        Incidents
+                      </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:srq' %}" style="color:black;">
+                        <span data-feather="file"></span>
+                        Service Requests
+                      </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-secondary" href="{% url 'ticketportal:chg' %}" style="color:black;">
+                        <span data-feather="file"></span>
+                        Changes
+                      </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                      <a class="nav-link btn btn-light" href="{% url 'ticketportal:closed' %}" style="color:black;">
+                        <span data-feather="file"></span>
+                        <-- Closed -->
+                      </a>
+                    </li>
+                </ul>
+                <hr>
+                <div>
+                    <ul class="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu3">
+                        <li class="nav-item py-5">
+                          <a class="nav-link btn btn-dark" href="{% url 'employees:employees' %}" style="color:white;">
+                            <span data-feather="file"></span>
+                            Employees
+                          </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+    </div>
+  </body>
+</html>

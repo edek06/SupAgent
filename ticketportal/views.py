@@ -6,6 +6,8 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from employees.models import Employee
 
+def dashboard(request):
+    return render(request, 'ticketportal/base.html')
 @login_required(login_url="/")
 def tickets(request):
     # all tickets save in 'tickets'
