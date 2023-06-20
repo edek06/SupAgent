@@ -6,8 +6,16 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from employees.models import Employee
 
+@login_required(login_url="/")
 def dashboard(request):
-    return render(request, 'ticketportal/base.html')
+    all_tickets = Ticket.objects.all()
+    activ_tickets = Ticket.objects.filter(status='ACT')
+    closed_tickets = Ticket.objects.filter(status='CSD')
+    all_incidents = Ticket.objects.filter(category='INC', status='ACT')
+    return render(request, 'ticketportal/dashboard.html', {'all_tickets':all_tickets,
+                                                           'activ_tickets':activ_tickets,
+                                                           'closed_tickets':closed_tickets,
+                                                           'all_incidents':all_incidents})
 @login_required(login_url="/")
 def tickets(request):
     # all tickets save in 'tickets'
