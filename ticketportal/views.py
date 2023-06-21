@@ -30,56 +30,19 @@ def tickets(request):
     return render(request, 'ticketportal/tickets.html', {'tickets': tickets})
 
 @login_required(login_url="/")
-def tck(request):
+def tck(request, category):
     # all tickets from user
-    all_tickets = Ticket.objects.filter(category='TCK', status='ACT')
+    all_tickets = Ticket.objects.filter(category=category, status='ACT')
     # first 20 employess on the page
     paginator = Paginator(all_tickets, 12)
     # beginn with the first page
     page_number = request.GET.get('page', 1)
     # save all this infomations in the variable
     tickets = paginator.page(page_number)
+    # it will be sent an information, what category of ticket it is (in Text) ... 's' for plural
+    str_category = Ticket.Category(category).label + 's'
     # show tickets on this page "tck.html"
-    return render(request, 'ticketportal/tck.html', {'tickets': tickets})
-
-@login_required(login_url="/")
-def inc(request):
-    # all incidents from user
-    all_incidents = Ticket.objects.filter(category='INC', status='ACT')
-    # first 20 employess on the page
-    paginator = Paginator(all_incidents, 12)
-    # beginn with the first page
-    page_number = request.GET.get('page', 1)
-    # save all this infomations in the variable
-    tickets = paginator.page(page_number)
-    # show tickets on this page "inc.html"
-    return render(request, 'ticketportal/inc.html', {'tickets': tickets})
-
-@login_required(login_url="/")
-def srq(request):
-    # all service requests from user
-    all_requests = Ticket.objects.filter(category='SRQ', status='ACT')
-    # first 20 employess on the page
-    paginator = Paginator(all_requests, 12)
-    # beginn with the first page
-    page_number = request.GET.get('page', 1)
-    # save all this infomations in the variable
-    tickets = paginator.page(page_number)
-    # show tickets on this page "srq.html"
-    return render(request, 'ticketportal/srq.html', {'tickets': tickets})
-
-@login_required(login_url="/")
-def chg(request):
-    # all changes from user
-    all_changes = Ticket.objects.filter(category='CHG', status='ACT')
-    # first 20 employess on the page
-    paginator = Paginator(all_changes, 12)
-    # beginn with the first page
-    page_number = request.GET.get('page', 1)
-    # save all this infomations in the variable
-    tickets = paginator.page(page_number)
-    # show tickets on this page "chg.html"
-    return render(request, 'ticketportal/chg.html', {'tickets': tickets})
+    return render(request, 'ticketportal/tck.html', {'tickets': tickets, 'category':str_category})
 
 @login_required(login_url="/")
 def closed(request):

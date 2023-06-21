@@ -39,8 +39,6 @@ class Ticket(models.Model):
     #                                    default="")
     # details of this ticket
     description = models.TextField()
-    # when this ticket was closed
-    #closed = models.DateTimeField(blank=True, default=)
     # when this ticket was created
     created = models.DateTimeField(auto_now_add=True)
     # deadline for this ticket - this parameter will be optional

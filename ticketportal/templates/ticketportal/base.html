@@ -6,7 +6,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="SupAgent v. 0.13" />
+        <meta name="description" content="SupAgent v. 0.15" />
         <meta name="author" content="Grzegorz Wozniak" />
         <title>SupAgent</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
@@ -65,19 +65,19 @@
                                 New Ticket
                             </a>
                             <div class="sb-sidenav-menu-heading">Tickets</div>
-                            <a class="nav-link" href="{% url 'ticketportal:tck' %}">
+                            <a class="nav-link" href="{% url 'ticketportal:tck' 'TCK' %}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-ticket"></i></div>
                                 Tickets
                             </a>
-                            <a class="nav-link" href="{% url 'ticketportal:inc' %}">
+                            <a class="nav-link" href="{% url 'ticketportal:tck' 'INC' %}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-bug"></i></div>
                                 Incidents
                             </a>
-                            <a class="nav-link" href="{% url 'ticketportal:srq' %}">
+                            <a class="nav-link" href="{% url 'ticketportal:tck' 'SRQ' %}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                                 Service Requests
                             </a>
-                            <a class="nav-link" href="{% url 'ticketportal:chg' %}">
+                            <a class="nav-link" href="{% url 'ticketportal:tck' 'CHG' %}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
                                 Changes
                             </a>
