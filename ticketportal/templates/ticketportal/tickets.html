@@ -1,6 +1,6 @@
 {% extends 'ticketportal/base.html' %}
 {% block content %}
-    <main class="col-md-9 col-lg-10 px-md-4">
+    <main class="col-md-9 col-lg-12 px-md-4">
       <br>
       <h2>Tickets</h2>
       <br>
@@ -30,8 +30,13 @@
               <td>{{ ticket.category }}</td>
               <td><a href="{% url 'ticketportal:employee_tickets' ticket.requester.id %}" style="color:black;">{{ ticket.requester }}</a></td>
               <td>{{ ticket.created }}</td>
-              <td>{{ ticket.priority }}</td>
-              </a>
+              {% if ticket.priority == 1 %}
+              <td><div class="sb-nav-link-icon"><i class="fas fa-battery-empty"></i></div></td>
+              {% elif ticket.priority == 2 %}
+              <td><div class="sb-nav-link-icon"><i class="fas fa-battery-half"></i></div></td>
+              {% else %}
+              <td><div class="sb-nav-link-icon"><i class="fas fa-battery-full"></i></div></td>
+              {% endif %}
             </tr>
             {% endfor %}
           </tbody>

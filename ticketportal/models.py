@@ -34,9 +34,6 @@ class Ticket(models.Model):
                                default="gwedi")
     # The requester is the person who made the support request
     requester = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    #respons_user = models.ForeignKey(User, on_delete=models.CASCADE,
-    #                                    blank=True,
-    #                                    default="")
     # details of this ticket
     description = models.TextField()
     # when this ticket was created
