@@ -1,24 +1,43 @@
 {% extends "ticketportal/base.html" %}
 {% block content %}
 <main class="col-md-9 col-lg-12 px-md-4">
-    <h3>
-        {% if info %}
-            {{ info }}
+    <br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Title:</th>
+          <th scope="col"><h4>{{ ticket.title }}</h4></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Ticket ID:</th>
+          <td>{{ ticket.id }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Requester:</th>
+          <td>{{ ticket.requester }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Description:</th>
+          <td>{{ ticket.description|linebreaks }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Created:</th>
+          <td>{{ ticket.created }}</td>
+        </tr>
+        {% if ticket.closed %}
+        <tr>
+            <th scope="row">Closed:</th>
+            <td class="text-danger">{{ ticket.closed }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Solution:</th>
+            <td>{{ ticket.solution }}</td>
+        </tr>
         {% endif %}
-    </h3>
-    <br>
-    <h1>{{ ticket.title }}</h1>
-    <br>
-    <p>Requester: {{ ticket.requester }}</p>
-    <br>
-    <h3>{{ ticket.description }}</h3>
-    <br>
-    <p>Created: {{ ticket.created }}</p>
-    {% if ticket.closed %}
-        </b><p class="text-danger">Closed: {{ ticket.closed }}</p>
-        <p><b>Solution:</b></p>
-        <p>{{ ticket.solution }}</p>
-    {% endif %}
+      </tbody>
+    </table>
     <a href="{% url 'ticketportal:edit_ticket' ticket.id %}" class="btn btn-secondary btn-lg active" role="button">Edit Ticket</a>
     <a href="{% url 'ticketportal:close_ticket' ticket.id %}" class="btn btn-success btn-lg active" role="button">Done</a>
 </main>

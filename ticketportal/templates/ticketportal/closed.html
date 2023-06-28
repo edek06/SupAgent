@@ -13,6 +13,7 @@
               <th scope="col">Category</th>
               <th scope="col">Requester</th>
               <th scope="col">Created</th>
+              <th scope="col">Closed</th>
               <th scope="col">Priority</th>
             </tr>
           </thead>
@@ -24,6 +25,7 @@
               <td>{{ ticket.category }}</td>
               <td><a href="{% url 'ticketportal:employee_tickets' ticket.requester.id %}" style="color:black;">{{ ticket.requester }}</a></td>
               <td>{{ ticket.created }}</td>
+              <td>{{ ticket.closed }}</td>
               {% if ticket.priority == 1 %}
               <td><div class="sb-nav-link-icon"><i class="fas fa-battery-empty"></i></div></td>
               {% elif ticket.priority == 2 %}

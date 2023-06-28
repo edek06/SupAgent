@@ -47,7 +47,7 @@ def tck(request, category):
 @login_required(login_url="/")
 def closed(request):
     # all closed tickets
-    closed_tickets = Ticket.objects.filter(status='CSD')
+    closed_tickets = Ticket.objects.filter(status='CSD').order_by('-closed')
     # first 16 tickets on the page
     paginator = Paginator(closed_tickets, 16)
     # beginn with the first page
