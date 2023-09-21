@@ -3,7 +3,7 @@ from django import forms
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['title', 'description', 'requester', 'category', 'priority', 'author', 'status']
+        fields = ['title', 'description', 'requester', 'category', 'priority', 'author']
 
 class TicketCloseForm(forms.ModelForm):
     class Meta:

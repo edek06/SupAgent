@@ -7,12 +7,12 @@ var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["March", "April", "May", "June"],
+    labels: ["March", "April", "May", "June", "July", "August"],
     datasets: [{
       label: "Employees",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-      data: [17, 13, 6, 7],
+      data: [17, 13, 6, 13, 6, 4],
     }],
   },
   options: {
