@@ -6,8 +6,6 @@
   <br>
   <form method="post">
     {% csrf_token %}
-    <!--{{ form.as_p }}
-    <input class="btn btn-danger" type="submit" value="Create">-->
     <div class="form-floating mb-3">
         <input class="form-control" type="text" name="title" maxlength="250" required id="id_title">
         <label for="id_title">Title:</label>
@@ -19,7 +17,7 @@
     <div class="form-floating mb-3">
         <select class="form-select" name="requester" required id="id_requester">
             {% for req in form.requester %}
-            <option selected>{{ req }}</option>
+            <option>{{ req }}</option>
             {% endfor %}
         </select>
         <label for="id_requester">Requester:</label>

@@ -38,7 +38,10 @@
         {% endif %}
       </tbody>
     </table>
+    <a href="{% url 'ticketportal:tickets' %}" class="btn btn-secondary btn-lg active" role="button">Back to Tickets</a>
+    {% if not ticket.closed %}
     <a href="{% url 'ticketportal:edit_ticket' ticket.id %}" class="btn btn-secondary btn-lg active" role="button">Edit Ticket</a>
     <a href="{% url 'ticketportal:close_ticket' ticket.id %}" class="btn btn-success btn-lg active" role="button">Done</a>
+    {% endif %}
 </main>
 {% endblock %}
