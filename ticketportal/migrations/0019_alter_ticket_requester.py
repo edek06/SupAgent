@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='ticket',
             name='requester',
-            field=models.ForeignKey(default='Grzegorz Wozniak', on_delete=django.db.models.deletion.CASCADE, related_name='tickets_req', to='employees.employee'),
+            field=models.ForeignKey(default='1', on_delete=django.db.models.deletion.CASCADE, related_name='tickets_req', to='employees.employee'),
         ),
     ]
