@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='ticket',
             name='requester',
-            field=models.ForeignKey(default='Grzegorz Wozniak', on_delete=django.db.models.deletion.CASCADE, to='employees.employee'),
+            field=models.ForeignKey(default='1', on_delete=django.db.models.deletion.CASCADE, to='employees.employee'),
             preserve_default=False,
         ),
     ]
