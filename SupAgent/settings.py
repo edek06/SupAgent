@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'SupAgent.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'SupAgent-DB',
+        'NAME': 'supagentdb',
         'USER': 'postgres',
         'PASSWORD': 'System20!',
         'HOST': 'localhost',
