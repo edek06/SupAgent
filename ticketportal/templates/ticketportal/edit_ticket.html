@@ -6,7 +6,47 @@
   <br>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="form-floating mb-3">
+        <input class="form-control" type="text" name="title" maxlength="250" required id="id_title" value="{{ ticket.title }}">
+        <label for="id_title">Title:</label>
+    </div>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" name="description" cols="40" rows="10" required id="id_description"
+                  style="height: 200px">{{ ticket.description }}</textarea>
+        <label for="id_description">Description:</label>
+    </div>
+    <div class="form-floating mb-3">
+        <select class="form-select" name="requester" required id="id_requester">
+            {% for req in form.requester %}
+            <option>{{ req }}</option>
+            {% endfor %}
+        </select>
+        <label for="id_requester">Requester:</label>
+    </div>
+    <div class="form-floating mb-3">
+        <select class="form-select" name="category" required id="id_category">
+            {% for cat in form.category %}
+            <option>{{ cat }}</option>
+            {% endfor %}
+        </select>
+        <label for="id_category">Category:</label>
+    </div>
+    <div class="form-floating mb-3">
+        <select class="form-select" name="priority" required id="id_priority">
+            {% for prio in form.priority %}
+            <option>{{ prio }}</option>
+            {% endfor %}
+        </select>
+        <label for="id_priority">Priority:</label>
+    </div>
+    <div class="form-floating mb-3">
+        <select class="form-select" name="author" required id="id_author">
+            {% for aut in form.author %}
+            <option>{{ aut }}</option>
+            {% endfor %}
+        </select>
+        <label for="id_author">Author:</label>
+    </div>
     <input class="btn btn-danger" type="submit" value="Change">
   </form>
 </main>

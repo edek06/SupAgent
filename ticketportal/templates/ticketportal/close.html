@@ -7,7 +7,10 @@
     {% if form %}
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            <div class="form-floating mb-3">
+                <textarea class="form-control" name="solution" cols="40" rows="10" required id="id_solution" style="height: 200px"></textarea>
+                <label for="id_solution">Solution:</label>
+            </div>
             <input class="btn btn-danger" type="submit" value="Close">
         </form>
     {% else %}

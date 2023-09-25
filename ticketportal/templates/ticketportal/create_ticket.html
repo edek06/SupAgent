@@ -40,9 +40,7 @@
     </div>
     <div class="form-floating mb-3">
         <select class="form-select" name="author" required id="id_author">
-            {% for aut in form.author %}
-            <option>{{ aut }}</option>
-            {% endfor %}
+            <option selected>{{ user }}</option>
         </select>
         <label for="id_author">Author:</label>
     </div>
