@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.utils import timezone
 from employees.models import Employee
+from django.http import HttpResponseRedirect
 
 @login_required(login_url="/")
 def dashboard(request):
@@ -79,7 +80,7 @@ def create_ticket(request):
             # Save the comment to the database
             ticket.save()
             # And back to the Homepage
-            return render(request,'ticketportal/tickets.html')
+            return HttpResponseRedirect('ticketportal:tickets')
     # if a GET we'll create a blank form
     else:
         form = TicketForm()
