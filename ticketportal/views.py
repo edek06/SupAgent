@@ -80,13 +80,6 @@ def create_ticket(request):
             ticket.save()
             # And back to the Homepage
             return redirect('ticketportal:tickets')
-        else:
-            # Create a Ticket object without saving it to the database
-            ticket = form.save(commit=False)
-            # Save the comment to the database
-            ticket.save()
-            # And back to the Homepage
-            return redirect('ticketportal:tickets')
     # if a GET we'll create a blank form
     else:
         form = TicketForm()
