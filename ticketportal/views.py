@@ -82,6 +82,8 @@ def create_ticket(request):
             ticket.save()
             # And back to the Homepage
             return HttpResponseRedirect(reverse_lazy('ticketportal:tickets'))
+        else:
+            return HttpResponseRedirect(reverse_lazy('ticketportal:tickets'))
     # if a GET we'll create a blank form
     else:
         form = TicketForm()
