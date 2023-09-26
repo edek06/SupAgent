@@ -79,7 +79,7 @@ def create_ticket(request):
             # Save the comment to the database
             ticket.save()
             # And back to the Homepage
-            return redirect('ticketportal:tickets')
+            return render(request,'ticketportal/tickets.html')
     # if a GET we'll create a blank form
     else:
         form = TicketForm()
