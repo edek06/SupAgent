@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from employees.models import Employee
 from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 
 @login_required(login_url="/")
 def dashboard(request):
@@ -80,7 +81,7 @@ def create_ticket(request):
             # Save the comment to the database
             ticket.save()
             # And back to the Homepage
-            return HttpResponseRedirect('ticketportal:tickets')
+            return HttpResponseRedirect(reverse_lazy('ticketportal:tickets'))
     # if a GET we'll create a blank form
     else:
         form = TicketForm()
