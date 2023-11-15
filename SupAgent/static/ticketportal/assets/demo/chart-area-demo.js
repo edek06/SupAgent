@@ -7,7 +7,7 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["March", "April", "May", "June", "July", "August"],
+    labels: ["March", "April", "May", "June", "July", "August", "September", "October"],
     datasets: [{
       label: "Tickets",
       lineTension: 0.3,
@@ -20,7 +20,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
       pointBorderWidth: 2,
-      data: [24, 13, 22, 26, 25, 11],
+      data: [24, 13, 22, 26, 25, 11, 15, 7],
     }],
   },
   options: {
@@ -33,7 +33,7 @@ var myLineChart = new Chart(ctx, {
           display: false
         },
         ticks: {
-          maxTicksLimit: 7
+          maxTicksLimit: 10
         }
       }],
       yAxes: [{
